@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
   const success = 'req.session.success';
   // delete req.session.success;
 
-  res.render('login', { sucess: success });
+  res.render('login');
 });
 
 module.exports = router;
