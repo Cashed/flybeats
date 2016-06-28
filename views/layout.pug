@@ -1,7 +1,11 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+    title infinite garden
+    link(rel='stylesheet' href='stylesheets/bootstrap.css')
+    link(rel='stylesheet' href='stylesheets/styles.css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js')
+  body.container-fluid(id='bubble-parent')
+    canvas(id='canvas')
     block content
+    //- script(src='scripts/floats.js')
