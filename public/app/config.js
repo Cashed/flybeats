@@ -10,17 +10,17 @@
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
+      .state('register', {
+        url: '/',
+        templateUrl: 'app/login/register.html',
+        controller: 'Register',
+        controllerAs: 'user'
+      });
       .state('login', {
         url: '/',
-        templateUrl: 'app/login/login.html'
-        // controller: 'Login',
-        // controllerAs: 'user'
-      // })
-      // .state('home', {
-      //   url: '/',
-      //   templateUrl: 'javascripts/home/home.html',
-      //   controller: 'Community',
-      //   controllerAs: 'community'
+        templateUrl: 'app/login/login.html',
+        controller: 'Login',
+        controllerAs: 'user'
       });
 
     $locationProvider.html5Mode(true);

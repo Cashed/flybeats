@@ -1,0 +1,79 @@
+<ng-include src="'app/partials/header.html'"></ng-include>
+<section class="container login">
+  <div class="row">
+    <div class="form-container col-md-4 col-md-offset-4">
+      <h2>Create Account</h2>
+      <form name='submitForm'
+            ng-submit='user.submitLogin()'
+            novalidate >
+        <div class="form-group has-feedback"
+             ng-class='{ "has-error": submitForm.username.$invalid && submitForm.username.$touched,
+                         "has-success": submitForm.username.$valid }'>
+          <label for="username">Username</label>
+          <input class="form-control"
+                 type="text"
+                 name="username"
+                 id="username"
+                 ng-model="user.username"
+                 ng-minlength=3
+                 ng-maxlength=15
+                 required >
+          <span class='form-control-feedback'
+                ng-show='submitForm.username.$invalid && submitForm.username.$touched'>
+            <i class='fa fa-times'
+               aria-hidden='true'
+               style='color: red'></i>
+          </span>
+          <span class='form-control-feedback'
+                ng-show='submitForm.username.$valid'>
+            <i class='fa fa-check'
+               aria-hidden='true'
+               style='color: green'></i>
+          </span>
+          <div class='error'
+               ng-messages='submitForm.username.$error'
+               ng-if='submitForm.username.$touched'>
+            <p ng-message='minlength'>Username needs to be at least 3 characters</p>
+            <p ng-message='maxlength'>Username must be max 15 characters</p>
+            <p ng-message='required'>Username is required</p>
+          </div>
+        </div>
+        <div class="form-group has-feedback"
+             ng-class='{ "has-error": submitForm.password.$invalid && submitForm.password.$touched,
+                         "has-success": submitForm.password.$valid }'>
+          <label for="password">Password</label>
+          <input class="form-control"
+                 type="password"
+                 name="password"
+                 id="password"
+                 ng-model="user.password"
+                 ng-pattern="user.pwPattern"
+                 required >
+          <span class='form-control-feedback'
+                ng-show='submitForm.password.$invalid && submitForm.password.$touched'>
+            <i class='fa fa-times'
+               aria-hidden='true'
+               style='color: red'></i>
+          </span>
+          <span class='form-control-feedback'
+                ng-show='submitForm.password.$valid'>
+            <i class='fa fa-check'
+               aria-hidden='true'
+               style='color: green'></i>
+          </span>
+          <div class='error'
+               ng-messages='submitForm.password.$error'
+               ng-if='submitForm.password.$touched'>
+            <p ng-message='pattern'>Password must be 6 - 20 characters in length and contain at least 1 alpha and 1 numeric character</p>
+            <p ng-message='required'>Password is required</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Register</button>
+          <a href="/login" class="btn btn-link center-block">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<ng-include src="'app/partials/footer.html'"></ng-include>
