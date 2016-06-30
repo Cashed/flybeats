@@ -1,28 +1,48 @@
 (function() {
+  'use strict';
 
   angular
     .module('MusicalStares')
-    .config(Router);
+    .config(Router)
+    .run(Run);
 
-  Router.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+  Router.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
 
-  function Router($stateProvider, $urlRouterProvider, $locationProvider) {
+  function Router($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+    $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
+    $httpProvider.interceptors.push('AuthInterceptor');
 
     $stateProvider
-      .state('register', {
+      .state('home', {
         url: '/',
-        templateUrl: 'app/login/register.html',
+        templateUrl: 'app/authentication/register/register.html',
+        controller: 'Home',
+        controllerAs: 'home'
+      })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'app/authentication/login/login.html',
+        controller: 'Login',
+        controllerAs: 'user',
+        data: {
+          registrationSuccess: false
+        }
+      })
+      .state('register', {
+        url: '/register',
+        templateUrl: 'app/authentication/register/register.html',
         controller: 'Register',
         controllerAs: 'user'
       });
-      .state('login', {
-        url: '/',
-        templateUrl: 'app/login/login.html',
-        controller: 'Login',
-        controllerAs: 'user'
-      });
+  }
 
-    $locationProvider.html5Mode(true);
+  function Run($rootScope, $state) {
+    $rootScope.$on('$stateChangeError',
+      function(event, toState, toParams, fromState, fromParams, error) {
+        if (error.status === 401) {
+          $state.go('login');
+        }
+      });
   }
 })();

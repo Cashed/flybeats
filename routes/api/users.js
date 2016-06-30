@@ -1,10 +1,10 @@
+'use strict';
+
 const express = require('express');
 const router = express.Router();
-const User = require('../services/users.service');
+const User = require('../../services/users.service.js');
 
 // routes
-router.post('/authenticate', authenticateUser);
-router.post('/register', registerUser);
 router.get('/current', getCurrentUser);
 router.get('/:id', getUserById);
 router.get('/name/:username', getUserByName);
@@ -12,32 +12,6 @@ router.put('/:id', updateUser);
 router.delete('/:id', deleteUser);
 
 module.exports = router;
-
-function authenticateUser(req, res, next) {
-  User.authenticate(req.body.username, req.body.password, (error, token) => {
-    if (error) {
-      res.status(400).send(error);
-    }
-    else if (token) {
-      res.send({ token: token });
-    }
-    else {
-      // unauthorized
-      res.sendStatus(401);
-    }
-  });
-}
-
-function registerUser(req, res, next) {
-  User.createUser(req.body, (error, user) => {
-    if (error) {
-      res.status(400).send(error.error);
-    }
-    else {
-      res.sendStatus(200);
-    }
-  });
-}
 
 function getCurrentUser(req, res, next) {
   User.getById(req.user.sub, (error, user) => {

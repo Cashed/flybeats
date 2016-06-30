@@ -3,6 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+const auth = require('./services/token.service.js')
 
 var app = express();
 require('dotenv').load();
@@ -14,10 +15,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', require('./routes/index'));
-// app.use('/login', require('./routes/login'));
-// app.use('/users', require('./routes/users'));
 
+app.use(auth.checkToken);
+app.use('/auth', require('./routes/auth.js'));
+app.get('/login', (req, res, next) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+app.get('/register', (req, res, next) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+app.use('/api', auth.loggedIn, require('./routes/api'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

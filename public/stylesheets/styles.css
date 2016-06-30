@@ -1,7 +1,17 @@
 /******************** GENERAL **********************/
+html {
+  width: 100%;
+  height: 100%;
+}
 
 body {
+  width: 100%;
+  height: 100%;
   background-color: #505050;
+  background-image: url('https://c2.staticflickr.com/2/1520/24330829813_944c817720_b.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .footer {

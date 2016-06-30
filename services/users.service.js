@@ -1,4 +1,5 @@
-const jwt = require('jsonwebtoken');
+'use strict';
+
 const knex = require('../db/knex');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
@@ -11,16 +12,24 @@ function account() {
   return knex('accounts');
 }
 
-user.authenticate = (username, password, callback) => {
-  account().where({ username: username }).first().then( account => {
+user.authenticate = (user, callback) => {
+  account().where({ username: user.username }).first().then( account => {
     if (!account) {
-      return callback("username does not exist");
+      let error = {
+        details: "username does not exist"
+      };
+      return callback(error);
     }
-    bcrypt.compare(password, account.password_digest, (err, isMatch) => {
+    bcrypt.compare(user.password, account.password_digest, (err, isMatch) => {
       if (err || !isMatch) {
-        return callback("username and password don't match");
+        let error = {
+          details: "username and password don't match"
+        };
+        return callback(error);
       } else {
-        return callback(undefined, jwt.sign({ sub: account.id }, process.env.SECRET));
+        user().where({ account_id: account.id }).first().then( user => {
+          return callback(undefined, user);
+        });
       }
     });
   });
