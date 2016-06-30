@@ -36,7 +36,6 @@ function checkToken(req, res, next) {
     });
   }
   else {
-    console.log('unauthorized');
     next();
   }
 }

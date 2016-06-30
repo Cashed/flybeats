@@ -13,15 +13,11 @@ require('dotenv').load();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.static(path.join(__dirname, 'app')));
 
 app.use(auth.checkToken);
 app.use('/auth', require('./routes/auth.js'));
-app.get('/login', (req, res, next) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
-app.get('/register', (req, res, next) => {
+app.get('/*', (req, res, next) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 

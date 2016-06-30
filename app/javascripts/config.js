@@ -16,13 +16,13 @@
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'app/authentication/register/register.html',
+        templateUrl: 'javascripts/home/home.html',
         controller: 'Home',
         controllerAs: 'home'
       })
       .state('login', {
         url: '/login',
-        templateUrl: 'app/authentication/login/login.html',
+        templateUrl: 'javascripts/authentication/login/login.html',
         controller: 'Login',
         controllerAs: 'user',
         data: {
@@ -31,7 +31,7 @@
       })
       .state('register', {
         url: '/register',
-        templateUrl: 'app/authentication/register/register.html',
+        templateUrl: 'javascripts/authentication/register/register.html',
         controller: 'Register',
         controllerAs: 'user'
       });
