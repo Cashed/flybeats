@@ -3,14 +3,16 @@
 const knex = require('../db/knex');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
+const user = function() {};
 
-function user() {
+function users() {
   return knex('users');
 }
 
 function account() {
   return knex('accounts');
 }
+
 
 user.authenticate = (user, callback) => {
   account().where({ username: user.username }).first().then( account => {
@@ -27,7 +29,7 @@ user.authenticate = (user, callback) => {
         };
         return callback(error);
       } else {
-        user().where({ account_id: account.id }).first().then( user => {
+        users().where({ account_id: account.id }).first().then( user => {
           return callback(undefined, user);
         });
       }
@@ -54,7 +56,7 @@ user.createUser = (credentials, callback) => {
       const avatar = avatarPaths[Math.floor(Math.random() * 10)];
 
       account().insert(credentials, '*').then( account => {
-        user()
+        users()
           .insert({
             account_id: account[0].id,
             username: account[0].username,
@@ -76,7 +78,7 @@ user.createUser = (credentials, callback) => {
 }
 
 user.getAll = callback => {
-  user().select().then( users => {
+  users().select().then( users => {
     callback(undefined, users);
   })
   .catch( error => {
@@ -85,7 +87,7 @@ user.getAll = callback => {
 }
 
 user.getById = (id, callback) => {
-  user().where({ id: id }).then( user => {
+  users().where({ id: id }).then( user => {
     callback(undefined, user);
   })
   .catch( error => {
@@ -94,7 +96,7 @@ user.getById = (id, callback) => {
 }
 
 user.getByUsername = (username, callback) => {
-  user().where({ username: username }).then( user => {
+  users().where({ username: username }).then( user => {
     callback(undefined, user);
   })
   .catch(error => {
@@ -116,7 +118,7 @@ user.updateUser = (id, userParam, callback) => {
         .where({ id: id })
         .update({ username: userParam.username, password_digest: userParam.password_digest }, '*')
         .then( user => {
-          user().where()
+          users().where()
           callback(undefined, user);
         })
         .catch( error => {
@@ -125,7 +127,7 @@ user.updateUser = (id, userParam, callback) => {
     });
   }
   else {
-    user()
+    users()
       .where({ id: id })
       .update({ username: userParam.username, avatar: userParam.avatar }, '*')
       .then( user => {
@@ -138,7 +140,7 @@ user.updateUser = (id, userParam, callback) => {
 }
 
 user.deleteUser = (id, callback) => {
-  user().where({ id: id }).del().then( row => {
+  users().where({ id: id }).del().then( row => {
     callback(undefined, row);
   })
   .catch( error => {

@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  include ./partials/header.pug
+  .container(ng-controller='Register as user')
+    .row
+      .form-container.col-md-4.col-md-offset-4
+        h2 Create Account
+
+        form(action='/register' method='post' name='submitForm')
+          if error
+            .alert.alert-danger #{error}
+          .form-group.has-feedback(ng-class='{ "has-error": submitForm.username.$invalid && submitForm.username.$touched,\
+          "has-success": submitForm.username.$valid }')
+            label(for='username') Username
+            input#username.form-control(type='text', name='username', ng-model='user.newUser.username', ng-minlength='3', ng-maxlength='15', required='')
+            span.form-control-feedback(ng-show='submitForm.username.$invalid && submitForm.username.$touched')
+              i.fa.fa-times(aria-hidden='true', style='color: red')
+            span.form-control-feedback(ng-show='submitForm.username.$valid')
+              i.fa.fa-check(aria-hidden='true', style='color: green')
+            .error(ng-messages='submitForm.username.$error', ng-if='submitForm.username.$touched', style='color: red')
+              p(ng-message='minlength') Username needs to be at least 3 characters
+              p(ng-message='maxlength') Username must be max 15 characters
+              p(ng-message='required') Username is required
+          .form-group.has-feedback(ng-class='{ "has-error": submitForm.password.$invalid && submitForm.password.$touched,\
+          "has-success": submitForm.password.$valid }')
+            label(for='password') Password
+            input#password.form-control(type='password', name='password', ng-model='user.newUser.password', ng-pattern='user.pwPattern', required='')
+            span.form-control-feedback(ng-show='submitForm.password.$invalid && submitForm.password.$touched')
+              i.fa.fa-times(aria-hidden='true', style='color: red')
+            span.form-control-feedback(ng-show='submitForm.password.$valid')
+              i.fa.fa-check(aria-hidden='true', style='color: green')
+            .error(ng-messages='submitForm.password.$error', ng-if='submitForm.password.$touched', style='color: red')
+              p(ng-message='pattern')
+                | Password must be 6 - 20 characters in length and contain at least 1 alpha and 1 numeric character
+              p(ng-message='required') Password is required
+          .form-group
+            button.btn.btn-primary(type='submit' ng-disabled='!submitForm.$valid') Register
+            a.btn.btn-link.center-block(href='/login') Cancel
+  include ./partials/footer.pug
