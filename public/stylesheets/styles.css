@@ -1,7 +1,8 @@
 body {
-  background-image: url('../images/background.jpg');
+  background-image: url('http://www.desktop-image.com/wp-content/uploads/2014/08/powerpoint-space-backgrounds.jpg');
   background-position: center;
   background-repeat: no-repeat;
+  background-color: black;
 }
 
 canvas {
@@ -10,22 +11,22 @@ canvas {
 }
 
 .form-container {
-  color: #EC9B07;
+  color: #c820ee;
   z-index: 1;
-  background-color: white;
+  background-color: #303030;
   padding: 10px 25px 25px 25px;
   margin-top: 100px;
   border-radius: 5px;
 }
 
 header {
-  background-color: white;
-  padding: 15px 0;
+  padding: 0;
 }
 
 .logo {
-  margin-left: 15px;
-  width: 250px;
+  font-family: 'Monofett', sans-serif;
+  font-size: 52pt;
+  color: #c820ee;
 }
 
 .btn {
@@ -33,11 +34,32 @@ header {
   width: 100%;
 }
 
+.login {
+  position: relative;
+}
+
+.create-btn {
+  background-color: #c820ee;
+  color: white;
+}
+
+.bird {
+  position: absolute;
+  z-index: 0;
+}
+
+#space {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
 footer {
   position: absolute;
   width: 100%;
   bottom: 0;
   left: 0;
-  color: white;
+  color: #c820ee;
   text-align: center;
 }

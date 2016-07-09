@@ -2,8 +2,9 @@ extends layout
 
 block content
   include ./partials/header.pug
-  .container(ng-controller='Register as user')
-    .row
+  .container(ng-controller='Register as user' ng-cloak)
+    .row.auth-container
+      img.bird(src='images/bird.png')
       .form-container.col-md-4.col-md-offset-4
         h2 Create Account
 
