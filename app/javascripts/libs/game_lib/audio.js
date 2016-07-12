@@ -8,11 +8,14 @@ var finalScore = 0;
 var timeScore = 0;
 var boost = 0;
 var restart = 10;
-var url1 = 'https://s3-us-west-2.amazonaws.com/flybeats/04+The+Glow+(feat.+Kimbra).m4a';
-var url2 = 'https://s3-us-west-2.amazonaws.com/flybeats/03+Tessellate.m4a';
-var url3 = 'https://s3-us-west-2.amazonaws.com/flybeats/Grimes+-+Oblivion.mp3';
-var url4 = 'https://s3-us-west-2.amazonaws.com/flybeats/02+The+Mollusk.m4a';
-var demo = 'https://s3-us-west-2.amazonaws.com/flybeats/demo.wav';
+var urls = [
+  'https://s3-us-west-2.amazonaws.com/flybeats/04+The+Glow+(feat.+Kimbra).m4a',
+  'https://s3-us-west-2.amazonaws.com/flybeats/03+Tessellate.m4a',
+  'https://s3-us-west-2.amazonaws.com/flybeats/Grimes+-+Oblivion.mp3',
+  'https://s3-us-west-2.amazonaws.com/flybeats/02+The+Mollusk.m4a',
+  'https://s3-us-west-2.amazonaws.com/flybeats/demo.wav'
+];
+
 var bonus = new Audio('app/javascripts/libs/game_lib/10upFast3.mp3');
 
 // loading web audio API on browsers
@@ -26,10 +29,39 @@ catch(e) {
   alert('Web Audio API is not supported on this browser.  Recommend Re-opening in Chrome =)');
 }
 
-window.addEventListener('load', function() {
-  var dropzone = document.querySelector('body');
-  dropzone.addEventListener('drop', handleDrop, false);
-  dropzone.addEventListener('dragover', handleDragOver, false);
+$('.music-selection').on('change', function() {
+  var song = '';
+
+  $('select option:selected').each(function() {
+    song += $(this).val();
+
+    var request = new XMLHttpRequest();
+
+    // getting music data
+    request.open('GET', urls[song], true);
+
+    // placing response in an ArrayBuffer (fixed-length raw binary data)
+    request.responseType = 'arraybuffer';
+
+    // XMLHttpRequest Level 2: ArrayBuffer (binary data)
+    request.onload = function() {
+      data = request.response;
+      decodeAudio(data);
+    }
+
+    request.onerror = function() {
+      alert('buffer XHR error');
+    }
+
+    request.send();
+
+  });
+});
+
+$(window).on('load', function() {
+  var dropzone = $('body');
+  dropzone.on('drop', handleDrop, false);
+  dropzone.on('dragover', handleDragOver, false);
 });
 
 var handleDragOver = function(e) {
@@ -52,25 +84,6 @@ var handleDrop = function(e) {
     reader.readAsArrayBuffer(files[0]);
   }
 }
-
-var request = new XMLHttpRequest();
-
-// getting music data
-// request.open('GET', url, true);
-// placing response in an ArrayBuffer (fixed-length raw binary data)
-request.responseType = 'arraybuffer';
-
-// XMLHttpRequest Level 2: ArrayBuffer (binary data)
-request.onload = function() {
-  data = request.response;
-  decodeAudio(data);
-}
-
-request.onerror = function() {
-  alert('buffer XHR error');
-}
-
-// request.send();
 
 function decodeAudio(data) {
   // asychronously decodes audio file data contained in arraybuffer from reponse

@@ -99,11 +99,19 @@ canvas {
 }
 
 .play-again {
-  margin-top: 30px;
+  margin-top: 50px;
   text-align: center;
   font-family: 'Monofett';
   font-size: 47pt;
   cursor: pointer;
   z-index: 2;
   color: #00fbff;
+}
+
+.music-selection {
+  margin-top: 20px;
+  font-size: 18pt;
+  background-color: #101010;
+  color: white;
+  border: 1px solid black;
 }
