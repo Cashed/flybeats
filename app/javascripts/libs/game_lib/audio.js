@@ -8,7 +8,11 @@ var finalScore = 0;
 var timeScore = 0;
 var boost = 0;
 var restart = 10;
-var url = 'https://s3-us-west-2.amazonaws.com/flybeats/04+The+Glow+(feat.+Kimbra).m4a';
+var url1 = 'https://s3-us-west-2.amazonaws.com/flybeats/04+The+Glow+(feat.+Kimbra).m4a';
+var url2 = 'https://s3-us-west-2.amazonaws.com/flybeats/03+Tessellate.m4a';
+var url3 = 'https://s3-us-west-2.amazonaws.com/flybeats/Grimes+-+Oblivion.mp3';
+var url4 = 'https://s3-us-west-2.amazonaws.com/flybeats/02+The+Mollusk.m4a';
+var demo = 'https://s3-us-west-2.amazonaws.com/flybeats/demo.wav';
 var bonus = new Audio('app/javascripts/libs/game_lib/10upFast3.mp3');
 
 // loading web audio API on browsers
