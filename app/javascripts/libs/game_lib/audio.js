@@ -124,9 +124,13 @@ function decodeAudio(data) {
       };
 
       $('#play').click(function() {
+        score = 0;
+        health = 100;
+        $('.spirit-bar').animate({ width: '100%'});
+
         source.start(0);
 
-        $(document).css('cursor', 'none');
+        $('body').css('cursor', 'none');
 
         startTime = setInterval(function() {
           score += 10;
@@ -139,7 +143,7 @@ function decodeAudio(data) {
       function onEnded() {
         clearInterval(startTime);
 
-        $(document).css('cursor', 'default');
+        $('body').css('cursor', 'default');
         $('canvas').css('z-index', '0');
 
         $('.final-score-content').fadeIn();
