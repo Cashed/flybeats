@@ -126,7 +126,9 @@ function decodeAudio(data) {
       $('#play').click(function() {
         score = 0;
         health = 100;
+        $('.score').text('Score: ' + score);
         $('.spirit-bar').animate({ width: '100%'});
+
 
         source.start(0);
 
@@ -163,7 +165,11 @@ function calculateScore() {
   addOrbs(orbBonus);
   addSpirit(health);
 
+  var restart = 10;
   setTimeout(function() {
+    $('.play-again').text('Play again in ' + restart + ' sec.');
+    restart -= 1;
+
     $('.final-score-content').fadeOut();
     $('.start-screen').fadeIn();
   }, 10000);
