@@ -26,7 +26,7 @@
     $http.defaults.headers.common['Authorization'] = 'Bearer ' + $window.jwtToken.token;
   }
 
-  // manually bootstrap angular after the JWT token is retrieved from the stateProvider
+  // manually bootstrap angular after the JWT token is retrieved
   $(function() {
     //get JWT token from stateProvider
     $.get('/app/token', token => {

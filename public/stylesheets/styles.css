@@ -3,6 +3,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-color: black;
+  height: 100%;
+  width: 100%;
 }
 
 canvas {
@@ -26,6 +28,13 @@ header {
 .logo {
   font-family: 'Monofett', sans-serif;
   font-size: 52pt;
+  color: #c820ee;
+}
+
+.logo:hover {
+  text-decoration: none;
+  outline: none;
+  border: none;
   color: #c820ee;
 }
 

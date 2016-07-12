@@ -7,6 +7,7 @@
     <link rel='stylesheet' href='stylesheets/normalize.css'/>
     <link rel='stylesheet' href='stylesheets/bootstrap.css'/>
     <link rel='stylesheet' href='stylesheets/font-awesome.css'/>
+    <link href='https://fonts.googleapis.com/css?family=Monofett' rel='stylesheet' type='text/css'/>
     <link rel='stylesheet' href='stylesheets/styles.css'/>
 
     <!-- ********* misc libs ********** -->
@@ -30,6 +31,39 @@
     <base href='/'/>
   </head>
   <body>
+    <div class='row top-gui'>
+      <div class='col-md-4 score'>Score: </div>
+      <div class='col-md-7 spirit'>
+        Spirit
+        <div class='spirit-bar'></div>
+      </div>
+    </div>
+    <div class='row start-screen'>
+      <div class='start-screen-content col-md-8 col-md-offset-2'>
+        <div class='col-md-8 col-md-offset-2'>
+          Colliding with objects causes the phoenix to lose Spirit. Manuever around them to collect energy orbs for bonus points.
+        </div>
+        <div class='play-button col-md-8 col-md-offset-2'>
+          <p id='play'>play</p>
+        </div>
+        <div class='col-md-8 col-md-offset-2'>
+          or drag and drop a local .mp3 or .ogg
+        </div>
+      </div>
+    </div>
+    <div class='row final-score-content'>
+      <div class='timeScore col-md-8 col-md-offset-2'>Time Score: </div>
+      <div class='orbBonus col-md-8 col-md-offset-2'>Orb Bonus: </div>
+      <div class='spiritBonus col-md-8 col-md-offset-2'>Spirit Bonus: </div>
+      <div class='finalScore col-md-8 col-md-offset-2'>Final Score: </div>
+      <div class='play-again col-md-8 col-md-offset-2'>Play Again?</div>
+    </div>
     <div ui-view></div>
+
+    <!-- ************ game scripts *********** -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r78/three.js'></script>
+    <script src='app/javascripts/libs/game_lib/GPUParticleSystem.js'></script>
+    <script src='app/javascripts/libs/game_lib/audio.js'></script>
+    <script src='app/javascripts/libs/game_lib/cubes.js'></script>
   </body>
 </html>

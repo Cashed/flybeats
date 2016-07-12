@@ -12,6 +12,8 @@ html(ng-app='Auth')
     script(src='scripts/server_app.js')
     script(src='scripts/controllers/register.js')
   body.container-fluid
+    include ./partials/header.pug
     block content
+    include ./partials/footer.pug
     script(src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r78/three.js')
     script(src='scripts/space.js')

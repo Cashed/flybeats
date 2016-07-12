@@ -12,7 +12,7 @@ require('dotenv').load();
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 
-// app.use(favicon(path.join(__dirname, 'app', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,6 +23,13 @@ app.use(session({
   saveUnitialized: true,
   resave: false }
 ));
+
+// CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // use JWT auth to secure the api
 app.use('/api', expressJwt({ secret: process.env.SECRET }));
@@ -55,7 +62,7 @@ app.use((req, res, next) => {
 if (app.get('env') === 'development') {
   app.use((err, req, res, next) => {
     res.status(err.status || 500);
-    res.render('error', {
+    res.json({
       message: err.message,
       error: err
     });
@@ -66,7 +73,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  res.send({
+  res.json({
     message: err.message,
     error: err
   });

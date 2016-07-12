@@ -20,10 +20,6 @@ function loginView(req, res, next) {
   res.render('login', { success: viewData });
 }
 
-function registerView(req, res, next) {
-  res.render('register');
-}
-
 function authenticateUser(req, res, next) {
   User.authenticate(req.body, (error, user) => {
     if (error) {
