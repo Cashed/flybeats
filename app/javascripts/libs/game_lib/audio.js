@@ -7,6 +7,7 @@ var score = 0;
 var finalScore = 0;
 var timeScore = 0;
 var boost = 0;
+var restart = 10;
 var url = 'https://s3-us-west-2.amazonaws.com/flybeats/04+The+Glow+(feat.+Kimbra).m4a';
 var bonus = new Audio('app/javascripts/libs/game_lib/10upFast3.mp3');
 
@@ -127,7 +128,7 @@ function decodeAudio(data) {
         score = 0;
         health = 100;
         $('.score').text('Score: ' + score);
-        $('.spirit-bar').animate({ width: '100%'});
+        $('.spirit-bar').animate({ width: '=100%'});
 
 
         source.start(0);
@@ -149,6 +150,9 @@ function decodeAudio(data) {
         $('canvas').css('z-index', '0');
 
         $('.final-score-content').fadeIn();
+
+        restart = 10;
+
         calculateScore();
         console.log('song over');
       }
@@ -165,14 +169,17 @@ function calculateScore() {
   addOrbs(orbBonus);
   addSpirit(health);
 
-  var restart = 10;
-  setTimeout(function() {
+  var playAgain = setInterval(function() {
     $('.play-again').text('Play again in ' + restart + ' sec.');
+
     restart -= 1;
 
-    $('.final-score-content').fadeOut();
-    $('.start-screen').fadeIn();
-  }, 10000);
+    if (restart === 1) {
+      $('.final-score-content').fadeOut();
+      $('.start-screen').fadeIn();
+      clearInterval(playAgain);
+    }
+  }, 1000);
 
 }
 
@@ -185,8 +192,6 @@ function addSpirit(bonus) {
 
       finalScore += 100;
       spirit -= 100;
-
-      $('.spirit-bar').animate({ width: '-=10%'});
     }
     else {
       clearInterval(addScore);
