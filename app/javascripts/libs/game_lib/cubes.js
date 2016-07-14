@@ -295,7 +295,7 @@ function updateBodies() {
 
         if (health > 0) {
           health--;
-          $('.spirit-bar').animate({ width: `${health}%` })
+          // $('.spirit-bar').animate({ width: `${health}%` })
         }
       }
 
