@@ -109,7 +109,7 @@ function decodeAudio(data) {
       analyser.smootherTimeConstant = 0.6;
       // fft = Fast Fourier Transform, fftSize is used to determine the frequency domain
       // can be simply used to create am oscilloscope-stlyle output from audio
-      analyser.fftSize = 512;
+      analyser.fftSize = 128;
 
       // AudioBufferSourceNode that takes input source as ArrayBuffer and converts it to audio
       source = context.createBufferSource();
