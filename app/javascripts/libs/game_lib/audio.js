@@ -3,6 +3,7 @@ var source, sourceJS;
 var analyser;
 var audioArray;
 var startTime;
+var data;
 var score = 0;
 var finalScore = 0;
 var timeScore = 0;
@@ -78,7 +79,7 @@ var handleDrop = function(e) {
     var file = files[i];
     var reader = new FileReader();
     reader.addEventListener('load', function(e) {
-        var data = e.target.result;
+        data = e.target.result;
         decodeAudio(data);
     });
     reader.readAsArrayBuffer(files[0]);
