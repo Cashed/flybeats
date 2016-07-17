@@ -4,7 +4,7 @@
 
 FlyBeats is a 3D web game where the user must navigate a phoenix around blocks that pulsate to music.  This is a full-stack web application built as a capstone project during my time at Galvanize.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6jW6VOlvAxs" frameborder="0" allowfullscreen></iframe>
+[FlyBeats YouTube (https://imgur.com/qIgSCR5)](https://www.youtube.com/watch?v=6jW6VOlvAxs)
 
 ## Tech Stack
 
