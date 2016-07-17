@@ -291,7 +291,6 @@ function updateBodies() {
         cube.position.y -= 20;
         cube.position.z -= 20;
         cube.material.emissive.setHex(0xff0000);
-        console.log('collision');
 
         if (health > 0) {
           health--;
