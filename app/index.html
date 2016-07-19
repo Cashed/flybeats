@@ -2,11 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Musical Stares</title>
+    <title>FlyBeats</title>
     <!-- ********* stylesheets ********** -->
     <link rel='stylesheet' href='stylesheets/normalize.css'/>
-    <link rel='stylesheet' href='stylesheets/bootstrap.css'/>
-    <link rel='stylesheet' href='stylesheets/font-awesome.css'/>
+    <link rel='stylesheet' href='/scripts/angular-material/angular-material.css'/>
     <link href='https://fonts.googleapis.com/css?family=Monofett' rel='stylesheet' type='text/css'/>
     <link rel='stylesheet' href='stylesheets/styles.css'/>
 
@@ -15,10 +14,12 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js'></script>
 
     <!-- ********** angular libs *********** -->
-    <script src='javascripts/libs/angular.js'></script>
-    <script src='javascripts/libs/angular-ui-router.js'></script>
-    <script src='javascripts/libs/angular-animate.js'></script>
-    <script src='javascripts/libs/angular-messages.js'></script>
+    <script src='/scripts/angular/angular.js'></script>
+    <script src='/scripts/angular-ui-router/release/angular-ui-router.js'></script>
+    <script src='/scripts/angular-animate/angular-animate.js'></script>
+    <script src='/scripts/angular-messages/angular-messages.js'></script>
+    <script src='/scripts/angular-aria/angular-aria.js'></script>
+    <script src='/scripts/angular-material/angular-material.js'></script>
 
     <!-- ************ angular build *********** -->
     <script src='javascripts/app.js'></script>
@@ -31,7 +32,49 @@
     <base href='/'/>
   </head>
   <body>
-    <div class='row top-gui'>
+    <div class="start-md-panel md-padding" flex='40' flex-offset='30'>
+      <p>
+        Navigate the phoenix around the blocks.  Collect the orbs for extra points.
+      </p>
+      <h2>Options</h2>
+      <div layout="row">
+        <div flex="33">
+          <md-checkbox>Disable Parent Scroll</md-checkbox
+        </div>
+      </div>
+      <div class="start-md-panel-content">
+        <md-button class="md-primary md-raised start-dialog-open-button">
+          Dialog
+        </md-button>
+        <md-button class="md-primary md-raised start-menu-open-button">
+          Select Menu
+        </md-button>
+        <p>Your favorite dessert is: </p>
+      </div>
+    </div>
+    <div layout="column" style="height:500px;" ng-cloak>
+      <section layout="row" flex>
+        <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+          <md-toolbar class="md-theme-light">
+            <h1 class="md-toolbar-tools">Sidenav Right</h1>
+          </md-toolbar>
+          <md-content layout-padding>
+            <form>
+              <md-input-container>
+                <label for="testInput">Test input</label>
+                <input type="text" id="testInput"
+                       ng-model="data" md-autofocus>
+              </md-input-container>
+            </form>
+            <md-button class="md-primary">
+              Close Sidenav Right
+            </md-button>
+          </md-content>
+        </md-sidenav>
+      </section>
+    </div>
+
+    <!-- <div class='row top-gui'>
       <div class='col-md-4 score'>Score: </div>
       <div class='col-md-7 spirit'>
         Spirit
@@ -65,7 +108,7 @@
       <div class='spiritBonus col-md-8 col-md-offset-2'>Spirit Bonus: </div>
       <div class='finalScore col-md-8 col-md-offset-2'>Final Score: </div>
       <div class='play-again col-md-8 col-md-offset-2'></div>
-    </div>
+    </div> -->
     <div ui-view></div>
 
     <!-- ************ game scripts *********** -->

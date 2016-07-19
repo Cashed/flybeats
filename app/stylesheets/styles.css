@@ -2,13 +2,14 @@
 html {
   width: 100%;
   height: 100%;
+  background-color: transparent;
 }
 
 body {
   width: 100%;
   height: 100%;
   background-color: #505050;
-  background-image: url('http://www.pixelstalk.net/wp-content/uploads/2016/04/Best-space-wallpapers-for-desktop-picture-images.jpg');
+  background-image: url('http://digitalhint.net/wp-content/uploads/2015/01/outer-space-hd-desktop-wallpaper.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -114,4 +115,46 @@ canvas {
   background-color: #101010;
   color: white;
   border: 1px solid black;
+}
+
+.start-md-panel {
+  top: 50px;
+  height: 500px;
+  position: relative;
+  z-index: 1;
+  background: #222222;
+  border-radius: 4px;
+  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2),
+      0 13px 19px 2px rgba(0, 0, 0, 0.14),
+      0 5px 24px 4px rgba(0, 0, 0, 0.12);
+}
+
+.start-dialog-content {
+  padding: 0 15px;
+  width: 100%;
+}
+.start-dialog-content img {
+  height: 300px;
+  margin: auto;
+}
+.start-dialog-button {
+  width: 100%;
+}
+
+.start-menu-item {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: 48px;
+  padding: 0 16px;
+  position: relative;
+  transition: background 0.15s linear;
+  width: auto;
+}
+.start-menu-item:hover,
+.start-menu-item:focus {
+  background-color: rgb(238, 238, 238);
+}
+.start-menu-item.selected {
+  color: rgb(16, 108, 200);
 }
