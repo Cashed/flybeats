@@ -6,11 +6,12 @@
     .config(Router)
     .run(Run);
 
-  Router.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
+  Router.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$mdThemingProvider'];
 
-  function Router($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  function Router($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $mdThemingProvider) {
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
+    $mdThemingProvider.theme('default').dark();
 
     $stateProvider
       .state('home', {

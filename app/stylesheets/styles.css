@@ -99,15 +99,6 @@ canvas {
   z-index: 2;
 }
 
-.play-again {
-  margin-top: 50px;
-  text-align: center;
-  font-family: 'Monofett';
-  font-size: 47pt;
-  cursor: pointer;
-  z-index: 2;
-  color: #00fbff;
-}
 
 .music-selection {
   margin-top: 20px;
@@ -118,6 +109,8 @@ canvas {
 }
 
 .start-md-panel {
+  font-size: 18pt;
+  text-align: center;
   top: 50px;
   height: 500px;
   position: relative;
@@ -157,4 +150,18 @@ canvas {
 }
 .start-menu-item.selected {
   color: rgb(16, 108, 200);
+}
+
+select-menu md-content {
+  background-color: gray;
+}
+
+.play-again {
+  margin-top: 50px;
+  text-align: center;
+  font-family: 'Monofett';
+  font-size: 47pt;
+  cursor: pointer;
+  z-index: 2;
+  color: #00fbff;
 }
