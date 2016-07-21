@@ -73,6 +73,7 @@ var handleDragOver = function(e) {
 var handleDrop = function(e) {
   e.preventDefault();
   e.stopPropagation();
+  console.log('dropped');
 
   var files = e.dataTransfer.files
   for (var i = 0; i < files.length; i++) {
