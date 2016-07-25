@@ -3,8 +3,8 @@
 
   angular
     .module('MusicalStares')
-    .config(Router)
-    .run(Run);
+    .config(Router);
+    // .run(Run);
 
   Router.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$mdThemingProvider'];
 
@@ -22,10 +22,10 @@
       });
   }
 
-  function Run($http, $rootScope, $window) {
-    // add JWT token as default auth header
-    $http.defaults.headers.common['Authorization'] = 'Bearer ' + $window.jwtToken.token;
-  }
+  // function Run($http, $rootScope, $window) {
+  //   // add JWT token as default auth header
+  //   $http.defaults.headers.common['Authorization'] = 'Bearer ' + $window.jwtToken.token;
+  // }
 
   // manually bootstrap angular after the JWT token is retrieved
   $(function() {

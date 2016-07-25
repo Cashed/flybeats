@@ -26,13 +26,15 @@
     <script src='javascripts/config.js'></script>
     <script src='javascripts/services/user.service.js'></script>
     <script src='javascripts/home/home.controller.js'></script>
+    <script src='javascripts/music/music.service.js'></script>
+    <script src='javascripts/music/music.controller.js'></script>
 
 
     <!-- ************ superstatic ************ -->
     <base href='/'/>
   </head>
   <body>
-    <div class="start-md-panel md-padding" flex='40' flex-offset='30' layout-align='center'>
+    <div ng-controller ="Music as music" class="start-md-panel md-padding" flex='40' flex-offset='30' layout-align='center'>
       <p>
         Navigate the phoenix around the blocks.  Collect the orbs for extra points.
       </p>
@@ -43,12 +45,12 @@
             <div layout="row">
               <md-input-container flex='40' flex-offset='30'>
                 <label>Songs</label>
-                <md-select ng-model="selectedItem" md-selected-text="">
-                  <md-optgroup label="items">
-                    <md-option ng-value="item">The Glow</md-option>
-                    <md-option ng-value="item">Oblivion</md-option>
-                    <md-option ng-value="item">The Mollusk</md-option>
-                    <md-option ng-value="item">Demo</md-option>
+                <md-select ng-model="music.selected" md-selected-text="">
+                  <md-optgroup label="songs">
+                    <md-option value="https://s3-us-west-2.amazonaws.com/flybeats/04+The+Glow+(feat.+Kimbra).m4a">The Glow</md-option>
+                    <md-option value="https://s3-us-west-2.amazonaws.com/flybeats/Grimes+-+Oblivion.mp3">Oblivion</md-option>
+                    <md-option value=  "https://s3-us-west-2.amazonaws.com/flybeats/02+The+Mollusk.m4a">The Mollusk</md-option>
+                    <md-option value="https://s3-us-west-2.amazonaws.com/flybeats/demo.wav">Demo</md-option>
                   </md-optgroup>
                 </md-select>
               </md-input-container>
@@ -56,7 +58,7 @@
           </div>
         </div>
         <div class='play-button'>
-          <p id='play'>play</p>
+          <p id='play' ng-click='music.selectSong()'>play</p>
         </div>
       </div>
     </div>
